@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>일일박스오피스</title>
+<style>
+	div > h1 {
+		font-size:30px;
+	}
+	div > h2 {
+		font-size:20px;
+	}
+	div > p, div > a , div li {
+		font-size:12px;
+	}
+</style>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>		
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+	apiKey: "AIzaSyCMMelChCkm33MOyKB3aFSRwR0Mcp2XfDo",
+	authDomain: "movie-7554a.firebaseapp.com",
+	databaseURL: "https://movie-7554a.firebaseio.com",
+	projectId: "movie-7554a",
+	storageBucket: "movie-7554a.appspot.com",
+	messagingSenderId: "753709588876",
+	appId: "1:753709588876:web:4a4f05670dfd844c"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script> 
+function show(movieCd) { 
+		var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key=430156241533f1d058c603178cc3ca0e&movieCd=";
+		url = url + movieCd ;
+		$("#box3").text("");
+		
+		console.log(url);
+		$.ajax({
+			type: "GET",             
+			url: url, 
+			//cache: false,
+			dataType: "xml", 
+			success : function(data) { 
+				var str = "" ; 
+				str = str + "<div class='card-content'>" ;
+				str = str + "<span class='card-title'>"+$(data).find("movieNm").text() + " " + $(data).find("movieNmEn").text() + "</span>";
+				str = str + "<p>상영시간 : "+$(data).find("showTm").text() + "</p>"; 
+				str = str + "<ul class='collection'>" ;
+				$(data).find("actor").each(function () { 
+					str = str + "<li class='collection-item'>"+ $(this).find("peopleNm").text() + "</li>" ;
+				});
+				str = str + "</ul>" ;
+				str = str + "</div>" ;
+				$("#box3").append(str); 
+			},
+			error : function() {
+				alert("오류");
+			} 
+		});
+		
+}
+	
+$(document).ready(function(){
+	$('.datepicker').datepicker({ format: 'yyyymmdd' });
+    $('.collapsible').collapsible();
+	
+	$("#bt1").click(function(){
+			
+		var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=430156241533f1d058c603178cc3ca0e&targetDt=";
+		url = url + $("#txtYear").val() ; 
+		$("#msg").text("")
+		
+		$.ajax({
+			type: "GET",             
+			url: url,  
+			dataType: "xml", 
+			success : function(data) { 
+				var str = "" ; 
+				  
+				if ($(data).find("dailyBoxOffice").text() == "") {
+					alert("일일자료가 존재하지 않습니다.");
+					return;
+				}
+				$(data).find("dailyBoxOffice").each(function () { 
+					str = str + "<a href='#' class='collection-item' onclick='javascript:show(" + $(this).find("movieCd").text() + ")'>" ;
+					str = str + $(this).find("rank").text() + "위 (" ;
+					rankInten = parseInt($(this).find("rankInten").text()) ;
+					if ( rankInten > 0 ) {
+						str = str + "▲" + rankInten  + " ) :"
+					}
+					else if ( rankInten < 0 ) {
+						str = str + "▼" + Math.abs(rankInten)  + " ) :"
+					}
+					else {
+						str = str +  rankInten   + " ) :"
+					}
+					str = str + $(this).find("movieNm").text() + "</a>" ;	
+					
+				});
+				$("#msg").append(str); 
+			},
+			error : function() {
+				alert("오류");
+			}
+		});
+	
+	});
+});
+</script>       
+</head>
+<body>
+	<div class="container">
+		<div class="section teal darken-1">
+			<h1 class="white-text lighten-1 center-align">일일박스오피스</h1>
+		</div>
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s12 m6 center">
+			<form class="col s12">				
+				<div class="input-field col s6 m9">
+					<input type="number" id="txtYear" placeholder="날짜를 선택하세요." class="datepicker">
+				</div>
+			  <div class="col s6 m3">
+				<br />
+				<a class="waves-effect waves-light btn"  id="bt1"><i class="material-icons">done</i>확인</a>
+			  </div>
+			</form>
+			</div>
+		</div>
+		<div class="row"> 
+			<div class="col s12 m6 center">
+			 <div class="collection left-align" id="msg">
+			 </div>
+			</div>
+			<div class="col s12 m6 center">
+			 <div class="card left-align" id="box3">
+			 </div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

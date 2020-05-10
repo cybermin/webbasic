@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>일일박스오피스</title>
+<style>
+	div > h1 {
+		font-size:30px;
+	}
+	div > h2 {
+		font-size:20px;
+	}
+</style>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>		
+
+
+<script> 
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
+</script>       
+</head>
+<body>
+	<div class="container">
+		<div class="section teal darken-1">
+			<h1 class="white-text lighten-1 center-align">일일박스오피스</h1>
+		</div>
+		<div class="divider"></div>
+		<div class="row">
+			<div class="col s12 m6 center">
+			<h2>날짜선택</h2>
+			<form class="col s12">				
+				<div class="input-field col s6 m3">
+				  <input type="number" id="txtYear" placeholder="년도입력" class="validate">
+				  <label for="txtYear">년도입력</label>
+				</div>
+				<div class="input-field col s6 m3">
+					<select id="selMon">
+						<option value="01">1월</option> 
+						<option value="02">2월</option> 
+						<option value="03">3월</option> 
+						<option value="04">4월</option> 
+						<option value="05">5월</option> 
+						<option value="06">6월</option> 
+						<option value="07">7월</option> 
+						<option value="08">8월</option> 
+						<option value="09">9월</option> 
+						<option value="10">10월</option> 
+						<option value="11">11월</option> 
+						<option value="12">12월</option> 
+					</select>
+				<label>월입력</label>
+			  </div>
+			  <div class="input-field col s6 m3">
+					<select id="selDay">
+						<option value="01">1일</option> 
+						<option value="02">2일</option> 
+						<option value="03">3일</option> 
+						<option value="04">4일</option> 
+						<option value="05">5일</option> 
+						<option value="06">6일</option> 
+						<option value="07">7일</option> 
+						<option value="08">8일</option> 
+						<option value="09">9일</option> 
+						<option value="10">10일</option> 
+						<option value="11">11일</option> 
+						<option value="12">12일</option>
+						<option value="13">13일</option>
+						<option value="14">14일</option> 
+						<option value="15">15일</option> 
+						<option value="16">16일</option>
+						<option value="17">17일</option>
+						<option value="18">18일</option> 
+						<option value="19">19일</option> 
+						<option value="20">20일</option>
+						<option value="21">21일</option>
+						<option value="22">22일</option>
+						<option value="23">23일</option>
+						<option value="24">24일</option>
+						<option value="25">25일</option>
+						<option value="26">26일</option>
+						<option value="27">27일</option>
+						<option value="28">28일</option>
+						<option value="29">29일</option>
+						<option value="30">30일</option>
+						<option value="31">31일</option>
+					</select>
+				<label>월입력</label>
+			  </div>
+			  <div class="col s6 m3">
+				<br />
+				<a class="waves-effect waves-light btn"  id="bt1"><i class="material-icons">done</i>확인</a>
+			  </div>
+			</form>
+			</div>
+			<div class="col s12 m6 center"><h2>영화목록</h2></div>
+		</div>
+	</div>
+</body>
+</html>
