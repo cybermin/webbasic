@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>HTML 폼연습</title>
+<style>	
+	form {
+		width : 50%; 
+	} 	
+	label[for] {
+		display : inline-block ;
+        width : 100px;
+		height : 30px;
+        text-align: right;
+        padding: 10px;
+	}  	 
+	input[type], input[type] {
+		width : 200px;
+		height : 30px;
+		border : 1px solid #8C8C8C;
+		box-sizing: border-box;
+		padding : 5px;
+	}	
+	input[type=submit], input[type=reset]{
+		background-color : #73AD21;
+		width : 45%;
+		border : none;
+		padding : 10px;
+		margin : 5px;
+		color : white ;
+	}
+	textarea {
+		width : 100%;
+		height : 80px;
+	}	
+	#txt_year, #sel_mon, #txt_day {
+		width : 30%;
+		height : 40px;
+	}	
+	#sel_mon {
+		margin-left : 10px;
+		margin-right : 10px;
+	}	
+	.box1 {
+		border-radius: 10px;
+		border: 2px solid #73AD21;
+		background-color : #73AD21;
+		padding: 10px; 
+		margin : 10px;
+		width: 400px;
+		height: 20px; 
+		color : white;
+		text-align : center;
+	}
+	.box2 {		 
+		padding: 10px; 
+		margin : 10px;
+		width: 400px;  
+	} 	
+	.box3 {
+		border : 1px solid #8C8C8C;
+		width : 100%;
+		height : 40px;
+		display : inline-block;
+		padding : 5px 40px;
+		box-sizing : border-box;
+	} 
+</style>
+</head>
+<body>
+<form name="myform" method="get" action="05.php">
+    <label for="txt1">E-mail </label>
+    <input type="email" name="txt1" id="txt1"> <br>
+	<label for="txt2">전화번호 </label>
+    <input type="tel" name="txt2" id="txt2">  <br>
+	<label for="txt3">URL </label>
+    <input type="url" name="txt3" id="txt3"> 
+</form>
+</body>
+</html>
