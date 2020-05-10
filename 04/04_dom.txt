@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<title>DOM연습</title>
+	</head>
+	<body>
+		<a href="http://goole.com">구글</a>
+		<p>
+			본문내용
+		</p>
+	</body>
+</html>
