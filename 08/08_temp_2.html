@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>구구단</title>
+ 
+<style>
+	.box1 {
+		border-radius: 10px;
+		border: 2px solid #73AD21;
+		background-color : #73AD21;
+		padding: 10px; 
+		margin : 10px;
+		width: 400px;
+		height: 20px; 
+		color : white;
+		text-align : center;
+	}
+	.rdan, #msg > span {
+		margin-top: 80px; 
+		font-size : 40px;
+		text-align : center;
+	}
+	.box2 {		 
+		padding: 10px; 
+		margin : 10px;
+		width: 400px; 
+		text-align : center;
+    } 
+    
+	#msg {
+        
+		width : 400px;
+        height : 200px;
+        margin-left: 10px;
+        /*
+        margin : 10px;
+        */
+        padding: 10px;  
+        
+		border: 1px solid #73AD21;
+		font-size : 14px;
+		color : red;
+        /*
+        text-align : center;
+        */
+    }
+    
+ 
+	img {
+		width : 50px;
+		height :50px;
+    }
+    input[type=text] {
+        width: 40px;
+    }
+</style>
+<script>
+    var total = 0;
+    var win = 0;
+
+	function showClear() {
+		myform.reset();
+
+		document.getElementById("msg").innerHTML ="" ;
+	}
+	function show() {
+		if (myform.txt3.value == "") {
+            alert("정답을 입력하세요.");
+            if (myform.txt1.value == "" || myform.txt2.value == "") 
+                rshow() ;
+            myform.txt3.focus() ;
+			return ;
+        }
+        
+        var dan = myform.txt1.value ;
+        var i = myform.txt2.value;
+        var user = myform.txt3.value;
+        var str = "" ;
+
+        total++;
+        if ( dan * i == user ) {
+            str = str + "정답입니다." ;
+            win++;
+        }
+        else {
+            str = str + "오답입니다." ;
+        }
+
+        str = str + "<ul>" ;
+        str = str + "<li>" + "전체 횟수 : " + total  + "</li>";
+        str = str + "<li>" + "맞춘 횟수 : " + win  + "</li>";
+        str = str + "</ul>" ;
+        document.getElementById("msg").innerHTML =str ;
+        document.getElementById("sp1").innerHTML =str ;
+	}
+	function rshow() {
+		var dan = Math.floor(Math.random() * 8) + 2 ;
+		var i = Math.floor(Math.random() * 9) + 1 ;
+        
+        myform.txt1.value = dan ;
+        myform.txt2.value = i ;
+        myform.txt3.value = "" ;
+        myform.txt3.focus();
+	}
+</script>
+</head>
+<body>
+<form name="myform">
+	<div class="box1">
+		구구단 퀴즈
+	</div>
+	<div class="box2">
+        <input type="text" name="txt1" readonly>
+        x
+        <input type="text" name="txt2" readonly>
+        = 
+        <input type="text" name="txt3">
+		<input type="button" value="정답확인" onclick="show()">
+		<input type="button" value="랜덤보기" onclick="rshow()">
+		<input type="button" value="지우기"  onclick="showClear()">
+	</div>
+	<p id="sp1"></p>
+	<div id="msg">
+		
+	</div>
+</form>
+</body>
+</html>
