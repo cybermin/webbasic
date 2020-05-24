@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>xml파싱</title>
+
+<style>
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>   
+ 
+<!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+
+  <!-- Add Firebase products that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script> 
+  <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-database.js"></script>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCpDIa6K-5QNFHI95FHpS2g0Qm3QSos_jM",
+    authDomain: "test-b0383.firebaseapp.com",
+    databaseURL: "https://test-b0383.firebaseio.com",
+    projectId: "test-b0383",
+    storageBucket: "test-b0383.appspot.com",
+    messagingSenderId: "880023516760",
+    appId: "1:880023516760:web:1b601ebb06739721eb7c2d",
+    measurementId: "G-DH6K3GJRCB"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig); 
+  // Get a reference to the database service
+  var database = firebase.database();
+  var dbTestRef = database.ref('check/')
+  
+</script>
+<script>
+	$(document).ready(function(){
+		$("#bt1").click(function(){ 
+			dbTestRef.on('value', function(data){
+				$("#img1").attr("src", "./img/"+data.val()+".png");
+			})
+		});
+		$("#bt2").click(function(){ 
+			var updates = {};
+			updates['check/'] = 'on';
+			database.ref().update(updates)
+		});
+		$("#bt3").click(function(){ 
+			var updates = {};
+			updates['check/'] = 'off';
+			database.ref().update(updates)
+		});
+	});
+</script>
+</head>
+<body>
+	<img id="img1">
+	<input type="button" value="확인" id="bt1">
+	<input type="button" value="on" id="bt2">
+	<input type="button" value="off" id="bt3">
+</body>
+</html>
